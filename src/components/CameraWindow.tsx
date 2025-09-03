@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Camera, Upload, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
-import { FilterType } from './FilterSelector';
 
 interface CameraWindowProps {
   onPhotoCapture: (imageData: string) => void;
@@ -14,6 +13,8 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasCamera, setHasCamera] = useState(false);
+  const [capturedPhoto, setCapturedPhoto] = useState<string | null>(null);
+  const [isCameraFrozen, setIsCameraFrozen] = useState(false);
 
   useEffect(() => {
     initializeCamera();
@@ -67,6 +68,8 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
     context.drawImage(video, 0, 0);
     
     const imageData = canvas.toDataURL('image/png');
+    setCapturedPhoto(imageData);
+    setIsCameraFrozen(true);
     onPhotoCapture(imageData);
     toast.success("Photo captured!");
   };
@@ -78,6 +81,8 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
     const reader = new FileReader();
     reader.onload = (e) => {
       const imageData = e.target?.result as string;
+      setCapturedPhoto(imageData);
+      setIsCameraFrozen(true);
       onPhotoCapture(imageData);
       toast.success("Photo uploaded!");
     };
@@ -85,6 +90,8 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
   };
 
   const resetCamera = () => {
+    setCapturedPhoto(null);
+    setIsCameraFrozen(false);
     if (stream) {
       stream.getTracks().forEach(track => track.stop());
     }
@@ -105,7 +112,13 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
           </div>
         )}
         
-        {hasCamera && (
+        {capturedPhoto ? (
+          <img
+            src={capturedPhoto}
+            alt="Captured"
+            className="w-full h-full object-cover"
+          />
+        ) : hasCamera && (
           <video
             ref={videoRef}
             autoPlay
@@ -116,7 +129,7 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
           />
         )}
         
-        {!hasCamera && !isLoading && (
+        {!hasCamera && !isLoading && !capturedPhoto && (
           <div className="absolute inset-0 bg-muted flex items-center justify-center">
             <div className="text-center">
               <Camera size={48} className="mx-auto mb-4 opacity-50" />
@@ -130,7 +143,7 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
       </div>
 
       <div className="flex gap-3 flex-wrap">
-        {hasCamera && (
+        {hasCamera && !isCameraFrozen && (
           <button
             onClick={capturePhoto}
             className="brutal-button flex items-center gap-2 flex-1 min-w-0"
@@ -148,11 +161,11 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
           UPLOAD
         </button>
         
-        {hasCamera && (
+        {(hasCamera || capturedPhoto) && (
           <button
             onClick={resetCamera}
             className="brutal-button-accent p-3"
-            title="Reset Camera"
+            title={capturedPhoto ? "Reset Photo" : "Reset Camera"}
           >
             <RotateCcw size={20} />
           </button>
