@@ -118,7 +118,7 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
         </button>
       </div>
 
-      {imageData && hasProcessedImage && (
+      {/* {imageData && hasProcessedImage && (
         <div className="brutal-card bg-accent p-4">
           <div className="flex items-center gap-2 mb-2">
             <span className="font-bold text-sm uppercase">Filter Applied:</span>
@@ -126,9 +126,9 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
           <div className="font-black text-lg">{style.name}</div>
           <div className="text-sm opacity-75">{style.description}</div>
         </div>
-      )}
+      )} */}
 
-      {imageData && !hasProcessedImage && (
+      {/* {imageData && !hasProcessedImage && (
         <div className="brutal-card bg-muted p-4">
           <div className="text-center">
             <div className="text-4xl mb-2">🎨</div>
@@ -136,7 +136,7 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
             <div className="text-sm opacity-75">Select a filter to transform your photo</div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
