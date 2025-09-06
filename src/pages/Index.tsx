@@ -65,6 +65,7 @@ const Index = () => {
             <StyleSelector
               selectedStyle={selectedStyle}
               onStyleSelect={handleStyleSelect}
+              isProcessing={isProcessing}
             />
           </div>
 

@@ -89,11 +89,13 @@ export const styles: StyleType[] = [
 interface StyleSelectorProps {
   selectedStyle: StyleType;
   onStyleSelect: (style: StyleType) => void;
+  isProcessing: boolean;
 }
 
 export const StyleSelector: React.FC<StyleSelectorProps> = ({
   selectedStyle,
   onStyleSelect,
+  isProcessing,
 }) => {
 
   useEffect(() => {
@@ -110,11 +112,16 @@ export const StyleSelector: React.FC<StyleSelectorProps> = ({
         {styles.map((style) => (
           <button
             key={style.id}
-            onClick={() => onStyleSelect(style)}
+            onClick={() => !isProcessing && onStyleSelect(style)}
+            disabled={isProcessing}
             className={`brutal-card p-4 text-left transition-all ${
               selectedStyle.id === style.id
                 ? 'bg-primary text-primary-foreground'
                 : 'bg-card hover:bg-muted/80'
+            } ${
+              isProcessing
+                ? 'opacity-50 cursor-not-allowed'
+                : 'cursor-pointer'
             }`}
           >
             <div className="flex items-center gap-2 mb-2">
