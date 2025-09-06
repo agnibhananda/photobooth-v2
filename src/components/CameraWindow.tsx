@@ -1,12 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Camera, Upload, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
+import * as fs from "node:fs";
+import { FilterType } from './FilterSelector';
 
 interface CameraWindowProps {
   onPhotoCapture: (imageData: string) => void;
 }
 
 export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) => {
+  const [currentImage, setCurrentImage] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -38,8 +41,8 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
   const initializeCamera = async () => {
     try {
       setIsLoading(true);
-      const mediaStream = await navigator.mediaDevices.getUserMedia({ 
-        video: { width: 512, height: 512, facingMode: 'user' } 
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: { width: 512, height: 512, facingMode: 'user' }
       });
       setStream(mediaStream);
       setHasCamera(true);
@@ -56,20 +59,19 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
 
   const capturePhoto = () => {
     if (!videoRef.current || !canvasRef.current) return;
-    
+
     const canvas = canvasRef.current;
     const video = videoRef.current;
     const context = canvas.getContext('2d');
-    
+
     if (!context) return;
-    
+
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     context.drawImage(video, 0, 0);
-    
+
     const imageData = canvas.toDataURL('image/png');
-    setCapturedPhoto(imageData);
-    setIsCameraFrozen(true);
+    setCurrentImage(imageData);
     onPhotoCapture(imageData);
     toast.success("Photo captured!");
   };
@@ -81,8 +83,7 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
     const reader = new FileReader();
     reader.onload = (e) => {
       const imageData = e.target?.result as string;
-      setCapturedPhoto(imageData);
-      setIsCameraFrozen(true);
+      setCurrentImage(imageData);
       onPhotoCapture(imageData);
       toast.success("Photo uploaded!");
     };
@@ -90,8 +91,7 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
   };
 
   const resetCamera = () => {
-    setCapturedPhoto(null);
-    setIsCameraFrozen(false);
+    setCurrentImage(null);
     if (stream) {
       stream.getTracks().forEach(track => track.stop());
     }
@@ -101,7 +101,7 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
   return (
     <div className="space-y-4">
       <h2 className="brutal-heading text-2xl">📸 CAPTURE</h2>
-      
+
       <div className="camera-window relative w-[512px] h-[512px] bg-muted mx-auto">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-card">
@@ -111,10 +111,10 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
             </div>
           </div>
         )}
-        
-        {capturedPhoto ? (
+
+        {currentImage ? (
           <img
-            src={capturedPhoto}
+            src={currentImage}
             alt="Captured"
             className="w-full h-full object-cover"
           />
@@ -128,8 +128,8 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
             style={{ filter: 'none' }}
           />
         )}
-        
-        {!hasCamera && !isLoading && !capturedPhoto && (
+
+        {!hasCamera && !isLoading && (
           <div className="absolute inset-0 bg-muted flex items-center justify-center">
             <div className="text-center">
               <Camera size={48} className="mx-auto mb-4 opacity-50" />
@@ -138,7 +138,7 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
             </div>
           </div>
         )}
-        
+
         <canvas ref={canvasRef} className="hidden" />
       </div>
 
@@ -152,7 +152,7 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
             SNAP!
           </button>
         )}
-        
+
         <button
           onClick={() => fileInputRef.current?.click()}
           className="brutal-button-secondary flex items-center gap-2 flex-1 min-w-0"
@@ -160,8 +160,8 @@ export const CameraWindow: React.FC<CameraWindowProps> = ({ onPhotoCapture }) =>
           <Upload size={20} />
           UPLOAD
         </button>
-        
-        {(hasCamera || capturedPhoto) && (
+
+        {hasCamera && (
           <button
             onClick={resetCamera}
             className="brutal-button-accent p-3"
