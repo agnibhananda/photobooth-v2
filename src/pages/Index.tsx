@@ -2,21 +2,43 @@ import React, { useState } from 'react';
 import { CameraWindow } from '@/components/CameraWindow';
 import { OutputWindow } from '@/components/OutputWindow';
 import { StyleSelector, styles, StyleType } from '@/components/StyleSelector';
+import { generate } from "../backend/banana.ts";
 
 const Index = () => {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [selectedStyle, setSelectedStyle] = useState<StyleType>(styles[0]);
+  const [processedImage, setProcessedImage] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const handlePhotoCapture = (imageData: string) => {
+  const handlePhotoCapture = async (imageData: string) => {
     setCapturedImage(imageData);
+    setProcessedImage(null);
+    setIsProcessing(true);
+
+    try {
+      const generated = await generate(imageData, selectedStyle.prompt);
+      setProcessedImage(generated);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
-  const handleStyleSelect = (style: StyleType) => {
+  const handleStyleSelect = async (style: StyleType) => {
     setSelectedStyle(style);
+
+    if (capturedImage) {
+      setIsProcessing(true);
+      const generated = await generate(capturedImage, style.prompt);
+      setProcessedImage(generated);
+      setIsProcessing(false);
+    }
   };
 
   const handleReset = () => {
     setCapturedImage(null);
+    setProcessedImage(null);
     setSelectedStyle(styles[0]);
   };
 
@@ -37,8 +59,8 @@ const Index = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column - Camera */}
           <div className="lg:col-span-4 flex flex-col items-center">
-            <CameraWindow 
-              onPhotoCapture={handlePhotoCapture} 
+            <CameraWindow
+              onPhotoCapture={handlePhotoCapture}
             />
           </div>
 
@@ -53,9 +75,10 @@ const Index = () => {
           {/* Right Column - Output */}
           <div className="lg:col-span-4 flex flex-col items-center">
             <OutputWindow
-              imageData={capturedImage}
+              imageData={processedImage || capturedImage}
               onReset={handleReset}
               style={selectedStyle}
+              // isProcessing={isProcessing}   -->  this to show the loading screen when the image is being processed
             />
           </div>
         </div>

@@ -9,6 +9,7 @@ interface OutputWindowProps {
   imageData: string | null;
   onReset: () => void;
   style: StyleType;
+  // isProcessing : boolean;
 }
 
 export const OutputWindow: React.FC<OutputWindowProps> = ({
@@ -20,25 +21,25 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
 
   const downloadImage = () => {
     if (!imageData) return;
-    
+
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const context = canvas.getContext('2d');
     if (!context) return;
-    
+
     const img = new Image();
     img.onload = () => {
       canvas.width = img.width;
       canvas.height = img.height;
-      
+
       // Draw image without filter
       context.drawImage(img, 0, 0);
-      
+
       // Download the processed image
       canvas.toBlob((blob) => {
         if (!blob) return;
-        
+
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -47,7 +48,7 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        
+
         toast.success("Photo downloaded!");
       }, 'image/png');
     };
@@ -58,8 +59,16 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
   return (
     <div className="space-y-4">
       <h2 className="brutal-heading text-2xl">✨ OUTPUT</h2>
-      
+
       <div className="output-window relative w-[512px] h-[512px] bg-muted mx-auto">
+
+        {/* {isProcessing && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+              <div className="loader">Generating...</div>
+            </div>
+        )} */}
+
+
         {imageData ? (
           <img
             src={imageData}
@@ -76,9 +85,9 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
           </div>
         )}
       </div>
-      
+
       <canvas ref={canvasRef} className="hidden" />
-      
+
       <div className="flex gap-3 flex-wrap">
         <button
           onClick={downloadImage}
@@ -90,7 +99,7 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
           <Download size={20} />
           DOWNLOAD
         </button>
-        
+
         <button
           onClick={onReset}
           disabled={!imageData}
@@ -102,7 +111,7 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
           <RefreshCw size={20} />
         </button>
       </div>
-      
+
       {imageData && (
         <div className="brutal-card bg-accent p-4">
           <div className="flex items-center gap-2 mb-2">
