@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Wand2, Castle, Sparkles, Shirt, PenTool } from 'lucide-react';
+import { Wand2, Castle, Sparkles, Shirt, PenTool, Skull } from 'lucide-react';
 
 
 export interface StyleType {
@@ -85,6 +85,33 @@ export const styles: StyleType[] = [
     "**Resolution & Output:** Generate a high-resolution image (at least 1024x1024 pixels or larger) with clear, anti-aliased lines and vibrant colors, suitable for immediate use in a digital context."
   ],
   "style": "Fujiko F. Fujio Art Style (Doraemon Classic), 1970s-1980s Anime/Manga, children's cartoon, retro Japanese animation, simple, clean, vibrant, expressive, rounded forms, block colors",
+  "output_format": "png",
+  "quality": "max"
+}`
+  },
+  {
+    id: 'tatami',
+    name: 'Tatami Galaxy',
+    icon: <Skull className="w-6 h-6" />,
+    description: '🌀 Taitai World!',
+    prompt: `{
+  "instructions": [
+    "**Core Transformation Goal - Exact Replication:** Convert the provided human image into a character that is an **exact stylistic match** to the art style of Masaaki Yuasa's works, specifically as seen in *The Tatami Galaxy* and *Night is Short, Walk On Girl*. The transformation must strictly adhere to the visual conventions, **prioritizing faithful stylistic replication above all else** to capture the precise *essence* and appearance of his human character designs.",
+    "**Pose & Orientation - Front-Facing Bust:** The character must be rendered in a **front-facing bust shot**, from the chest up. The head should be perfectly centered and looking directly forward. The posture must be simple, symmetrical, and completely frontal, mirroring the static, contemplative feeling often conveyed in this style. No angled views, dynamic poses, or full-body shots. This ensures maximum focus on the iconic head and facial features.",
+    "**Facial Features - Highly Stylized & Distinctive:** All facial features must adhere *precisely* to the unique conventions of this art style:\n- **Eyes:** Large, distinct, and highly stylized. They should be wide, often with a slightly oval or elongated shape, and usually feature a thin, clean outline. Pupils are small, dark, and perfectly round or slightly oval. The whites of the eyes must be prominent and unshaded. Dark circles under the eyes, if present in the original or implied, should be rendered as thin, clean lines. Eyebrows are thin, often slightly angular lines, conveying subtle expressions. \n- **Nose:** Extremely minimalist and abstract. Often just two small, distinct dots or very short, parallel lines for nostrils. Alternatively, it can be a tiny, sharp, inverted 'V' or 'U' shape. \n- **Mouth:** A very thin, precise line. It can be a slight, subtle curve for a gentle smile, a straight line for pensiveness, or a slightly open 'o' shape for mild surprise/thought. No complex lip definitions. \n- **Face Shape:** Faces tend to be elongated or have a subtle angularity, particularly in the jawline or chin, rather than being perfectly round. They appear simplified and almost schematic, conveying an impression of youth or slight weariness. \n- **Glasses:** If present, they must be simple, round or slightly oval frames with thin, consistent black outlines and clear, flat lenses. \n- **Expression:** A thoughtful, slightly melancholic, quietly observant, or mildly concerned expression is characteristic. Avoid overly joyful, angry, or exaggerated cartoon expressions. The expression should be subtle and introspective.",
+    "**Hair Style - Solid, Angular Blocks:** Hair must be stylized into **solid, distinct, often geometric-like blocks of color (typically solid black)**. It must have sharp, clean edges and clearly defined shapes, with **absolutely no internal detail, individual strands, gradients, or complex highlights**. The hairline must be extremely clean and precisely defined against the skin, maintaining the original's general volume and part but simplifying it into a block form.",
+    "**Body Proportions - Slender & Slightly Elongated:** The character's proportions must be slender and somewhat elongated, reflecting a youthful or lean build. Limbs (if visible) should appear long and thin. The neck is often rendered as distinctly long and slender, supporting the proportionally sized head. Shoulders should be softly sloped or subtly angular, fitting the overall minimalist form.",
+    "**Line Work - Extremely Clean, Thin, & Consistent:** Utilize **extremely clean, uniformly thin, and consistently black outlines** for all elements of the character. This includes facial features, hair, clothing, and the outer silhouette. There should be **no subtle lines, varying thickness, sketchy quality, or textured lines**. Lines are precise and define form rather than creating volume. Shading must be completely flat or absent, using only clear, block colors.",
+    "**Color Palette - Flat, Desaturated, & Limited (White Pale Skin):** Employ a very limited palette of **flat, solid colors with absolutely no gradients, textures, or subtle color variations**. Colors should lean towards desaturated tones: **skin tones must be uniformly white pale, almost porcelain-like**, stark black for hair, and muted, subtle colors for clothing (e.g., desaturated blues, greens, greys, browns). The background must be a single, uniform, solid pastel or desaturated color (e.g., light blue, pale grey, off-white) with **zero details, patterns, or objects**.",
+    "**Clothing Style - Simplified & Clean Draping:** Simplify any clothing details from the original image into clean, untextured block shapes. Clothing should drape smoothly with minimal, simple folds that are defined by thin, clean lines. Patterns (like plaid) should be large, clear, and composed of only two strong, flat, desaturated colors. Avoid intricate details, wrinkles, or realistic fabric textures.",
+    "**Background Context - Absolute Minimalism:** The character must be placed against an **unbroken, single, uniform, solid pastel-toned or desaturated background**. No room details, no furniture, no patterns, no textures, no subtle lighting. The background's sole purpose is to isolate and highlight the character with ultimate, stark simplicity, just like a character reference sheet.",
+    "**Overall Aesthetic - Unmistakable Masaaki Yuasa Icon:** The final output must be utterly unmistakable as a character directly from Masaaki Yuasa's *The Tatami Galaxy* or *Night is Short, Walk On Girl*. It must perfectly embody the unique visual language, psychological depth, and stylistic minimalism of those works, making the transformed subject feel like an original character from that specific animated universe.",
+    "**Resolution & Output:** Generate a high-resolution image (at least 1024x1024 pixels or larger) with crisp, anti-aliased lines and vibrant, flat colors."
+  ],
+  "negative_prompt": [
+    "realistic, photorealistic, photography, 3D render, complex shading, gradients, subtle color variations, detailed textures, individual hair strands, blurry, deformed, distorted, adult proportions (if aiming for younger character), muscular, aged, wrinkles, dark/overly saturated colors, busy background, patterned background, complex background, objects in background, text, watermark, signature, anime girl (generic), anime boy (generic), chibi, cartoon (generic), manga panel with speech bubbles, sketch, drawing, painting, harsh shadows, intricate details, highly detailed skin, facial hair (unless prominent in original and stylized), wrinkles on clothes (excessive), soft light, shiny, glossy, tan skin, dark skin, colored skin (any other than white pale)"
+  ],
+  "style": "Masaaki Yuasa Art Style (The Tatami Galaxy, Night is Short Walk On Girl), minimalist anime, highly stylized, graphic design aesthetic, clean lines, flat colors, subtle expression, elongated proportions, stark, introspective, unique character design",
   "output_format": "png",
   "quality": "max"
 }`
