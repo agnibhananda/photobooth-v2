@@ -8,17 +8,6 @@ export default {
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
 	],
-	theme: {
-		extend: {
-			animation: {
-				"text-shine": "text-shine 3s linear infinite",
-				"float": "float 3s ease-in-out infinite",
-			},
-			scale: {
-				"102": "1.02",
-			},
-		},
-	},
 	prefix: "",
 	theme: {
 		container: {
@@ -103,5 +92,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [],
 } satisfies Config;
