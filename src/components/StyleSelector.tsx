@@ -12,22 +12,6 @@ export interface StyleType {
 
 export const styles: StyleType[] = [
   {
-    id: 'original',
-    name: 'Original',
-    icon: <Sparkles className="w-6 h-6" />,
-    description: '✨ Keep it real, keep it you!',
-    prompt: `{
-      "instructions": [
-        "Keep the image as close to the original as possible with no artistic alterations.",
-        "Maintain all facial features, body proportions, and background as they are.",
-        "Output the image in its highest possible quality without changes."
-      ],
-      "style": "Realistic, untouched, authentic",
-      "output_format": "png",
-      "quality": "high"
-    }`
-  },
-  {
     id: 'hogwarts',
     name: 'Hogwarts',
     icon: <Castle className="w-6 h-6" />,

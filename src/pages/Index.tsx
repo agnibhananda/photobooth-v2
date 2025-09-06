@@ -13,16 +13,7 @@ const Index = () => {
   const handlePhotoCapture = async (imageData: string) => {
     setCapturedImage(imageData);
     setProcessedImage(null);
-    setIsProcessing(true);
-
-    try {
-      const generated = await generate(imageData, selectedStyle.prompt);
-      setProcessedImage(generated);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsProcessing(false);
-    }
+    // Don't automatically apply a filter - let user choose
   };
 
   const handleStyleSelect = async (style: StyleType) => {
@@ -30,9 +21,14 @@ const Index = () => {
 
     if (capturedImage) {
       setIsProcessing(true);
-      const generated = await generate(capturedImage, style.prompt);
-      setProcessedImage(generated);
-      setIsProcessing(false);
+      try {
+        const generated = await generate(capturedImage, style.prompt);
+        setProcessedImage(generated);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsProcessing(false);
+      }
     }
   };
 
@@ -78,7 +74,8 @@ const Index = () => {
               imageData={processedImage || capturedImage}
               onReset={handleReset}
               style={selectedStyle}
-              // isProcessing={isProcessing}   -->  this to show the loading screen when the image is being processed
+              isProcessing={isProcessing}
+              hasProcessedImage={!!processedImage}
             />
           </div>
         </div>

@@ -9,13 +9,16 @@ interface OutputWindowProps {
   imageData: string | null;
   onReset: () => void;
   style: StyleType;
-  // isProcessing : boolean;
+  isProcessing: boolean;
+  hasProcessedImage: boolean;
 }
 
 export const OutputWindow: React.FC<OutputWindowProps> = ({
   imageData,
   onReset,
-  style
+  style,
+  isProcessing,
+  hasProcessedImage
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -62,12 +65,15 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
 
       <div className="output-window relative w-[512px] h-[512px] bg-muted mx-auto">
 
-        {/* {isProcessing && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-              <div className="loader">Generating...</div>
+        {isProcessing && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-10">
+            <div className="text-center">
+              <div className="animate-spin w-12 h-12 border-4 border-white border-t-transparent rounded-full mx-auto mb-4"></div>
+              <div className="text-white font-bold text-lg">Generating...</div>
+              <div className="text-white/75 text-sm mt-1">Applying {style.name} style</div>
             </div>
-        )} */}
-
+          </div>
+        )}
 
         {imageData ? (
           <img
@@ -112,13 +118,23 @@ export const OutputWindow: React.FC<OutputWindowProps> = ({
         </button>
       </div>
 
-      {imageData && (
+      {imageData && hasProcessedImage && (
         <div className="brutal-card bg-accent p-4">
           <div className="flex items-center gap-2 mb-2">
             <span className="font-bold text-sm uppercase">Filter Applied:</span>
           </div>
           <div className="font-black text-lg">{style.name}</div>
           <div className="text-sm opacity-75">{style.description}</div>
+        </div>
+      )}
+
+      {imageData && !hasProcessedImage && (
+        <div className="brutal-card bg-muted p-4">
+          <div className="text-center">
+            <div className="text-4xl mb-2">🎨</div>
+            <div className="font-bold text-lg mb-1">Choose a Style!</div>
+            <div className="text-sm opacity-75">Select a filter to transform your photo</div>
+          </div>
         </div>
       )}
     </div>
