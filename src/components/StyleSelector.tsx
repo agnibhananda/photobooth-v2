@@ -71,17 +71,23 @@ export const styles: StyleType[] = [
     icon: <PenTool className="w-6 h-6" />,
     description: '💥 Fujiko Fujio made you',
     prompt: `{
-      "instructions": [
-        "Transform the given image into a Doraemon-style cartoon character.",
-        "Preserve the original facial features and body proportions so the character remains recognizable.",
-        "Use soft, pale tones for the background to keep focus on the character.",
-        "Apply the signature Doraemon universe art style: round shapes, clean outlines, vibrant but simple colors.",
-        "Ensure the final output looks like a seamless part of the Doraemon world while maintaining the essence of the person in the original image."
-      ],
-      "style": "Doraemon universe, playful, minimalistic, bright",
-      "output_format": "png",
-      "quality": "high"
-    }`
+  "instructions": [
+    "**Core Transformation Goal:** Convert the provided human image into a character that is indistinguishable from an original Fujiko F. Fujio human character (specifically, a primary child character like Nobita, Suneo, Shizuka, or Gian) found in the Doraemon manga or early 1979-era anime series. The transformation must prioritize faithful stylistic replication over strict photorealism of the original subject, capturing the *essence* of his iconic human designs.",
+    "**Pose & Orientation - Front-Facing Primary Focus:** The character should be rendered in a clear, straightforward, **front-facing** pose. The body should be generally upright and symmetrical from the viewer's perspective. Avoid complex angles or dynamic action poses unless explicitly present and simple in the original image. Focus should be on the upper body/bust, or a full-body standing pose if the original implies it, always with the face clearly looking forward.",
+    "**Facial Features - Extreme Stylization for Essence:** The facial features must be highly stylized according to Fujiko F. Fujio's signature conventions to capture the character's *essence*:\n- **Eyes:** Large, perfectly round or slightly oval, simple black pupils (often a single dot or small circle). Whites of the eyes should be bright. No complex iris details or reflections. Eyebrows, if present, are thin, curved lines. \n- **Nose:** Extremely simplified; a small, rounded 'C' shape, a dot, or a very short, curved line. \n- **Mouth:** A simple, expressive line, often a wide, friendly curve for a smile or a small 'o' for surprise. \n- **Face Shape:** Predominantly round or gently oval, with soft, undefined jawlines. Cheeks may have subtle, small blush marks (two parallel curved lines) if the expression warrants it. \n- **Glasses:** If present, they should be simple, thick-rimmed circular or slightly square frames with clear, flat lenses. \n- **Expression:** Translate the original expression into one of Fujiko F. Fujio's characteristic emotions: wide-eyed wonder, mischievous grin, gentle smile, or mild surprise. Avoid complex or subtle adult emotions.",
+    "**Hair Style - Distinct Shapes:** Hair should be simplified into solid, distinct, rounded, or slightly spiky shapes (depending on the original hair's volume). Avoid any individual strand detailing. The hairline should be very clean and clearly defined against the skin.",
+    "**Body Proportions - Exaggerated Youthful & Rounded, with Bigger Head:** Adapt the subject's body into the characteristic Fujiko F. Fujio proportions for children or young teenagers. This means:\n- **Head Size:** The head should be noticeably **bigger** in proportion to the rest of the body, often maintaining a 1:2.5 to 1:3 total height ratio (head is 1/2.5 to 1/3 of the total height). This contributes significantly to the 'child-like' and 'cute' aesthetic. \n- **Limbs:** Short, thick, and rounded limbs (arms and legs) that taper slightly. \n- **Hands & Feet:** Simple, rounded hands (often drawn with only 3 or 4 fingers visible, or simplified mittens/gloves if worn). Feet are also very rounded, often visible in simple shoes (like sneakers or school shoes). \n- **Posture:** The posture should be simple and direct, reinforcing the front-facing view. Avoid stiff or overly realistic stances.",
+    "**Line Work - Iconic Cleanliness:** Use consistent, very clean, and uniformly thick black outlines for all characters and elements. Shading should be minimal to non-existent, typically just flat colors or small, stark shadows where necessary. Edges should be crisp, not textured or sketch-like.",
+    "**Color Palette - Flat & Vibrant:** Employ a limited palette of bright, flat, primary-like colors without gradients or complex textures. Skin tones should be a uniform, light peach/tan. Clothing should have distinct, block colors (e.g., solid blue, bright yellow, simple plaid patterns with two strong colors). Backgrounds should be very simple pastel solid colors (e.g., light blue, pale yellow, soft green) or minimalistic indoor settings with clearly defined, simple objects (e.g., a single bookshelf, a plain bed).",
+    "**Clothing Style:** Simplify any clothing details from the original image into block shapes and common styles seen in Fujiko F. Fujio's characters (e.g., a simple t-shirt, collared shirt, shorts, or trousers). Plaid patterns should be large, clear, and two-toned. Minimize intricate folds or fabric textures.",
+    "**Background Context - Extremely Simple:** The character should be presented against an **extremely simple, uniform, solid pastel-toned background** (e.g., light blue, pale yellow, soft green). No complex patterns, objects, furniture, or elaborate scenery should be present. The background's purpose is solely to provide a clean, unobtrusive backdrop that keeps the entire focus on the character, just like in a character reference sheet or a very clean manga panel.",
+    "**Overall Aesthetic - Authentic Fujiko F. Fujio Essence:** The final image must possess the unmistakable charm, innocence, and slightly whimsical feel of an authentic Fujiko F. Fujio illustration. It should appear to be a character design directly from a classic Doraemon episode or manga panel, making the original subject completely integrated into that specific universe, with all the signature stylistic traits prominently displayed.",
+    "**Resolution & Output:** Generate a high-resolution image (at least 1024x1024 pixels or larger) with clear, anti-aliased lines and vibrant colors, suitable for immediate use in a digital context."
+  ],
+  "style": "Fujiko F. Fujio Art Style (Doraemon Classic), 1970s-1980s Anime/Manga, children's cartoon, retro Japanese animation, simple, clean, vibrant, expressive, rounded forms, block colors",
+  "output_format": "png",
+  "quality": "max"
+}`
   }
 ];
 
