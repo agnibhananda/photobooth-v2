@@ -115,7 +115,34 @@ export const styles: StyleType[] = [
   "output_format": "png",
   "quality": "max"
 }`
-  }
+  },
+  {
+    id: 'lego',
+    name: 'Lego',
+    icon: <Shirt className="w-6 h-6" />,
+    description: '🧩 Legofy yourself!',
+    prompt: `{
+  "instructions": [
+    "**Core Transformation Goal - Exact 3D LEGO Minifigure Replication:** Convert the provided human image into a character that is an **exact stylistic match** to an official, high-quality **3D rendered LEGO minifigure**. The transformation must prioritize faithful replication of LEGO's physical toy aesthetic, including its materials, proportions, and construction.",
+    "**Overall Form & Proportions - Standard LEGO Minifigure:** The character must strictly adhere to the standard, iconic LEGO minifigure design:\n- **Head:** Cylindrical, with a top stud. \n- **Torso:** Rectangular block. \n- **Arms:** Cylindrical arms with C-shaped hands (minifigure hands). \n- **Legs:** Blocky, fused leg piece. \n- **Joints:** All visible joints (neck, shoulder, hip, hand) must be clearly defined as standard LEGO connection points, allowing for typical minifigure articulation. The character should stand upright and front-facing, as if it were a new minifigure in a product shot.",
+    "**Facial Features - Printed 3D Render:** Facial features (eyes, eyebrows, mouth, glasses, facial hair) must be rendered as **crisp, flat, 2D graphics printed onto the curved surface of the yellow, cylindrical LEGO head piece**. Eyes should be simple, typically black dots with white highlights, or clear, stylized designs. Expressions should be clear, simple, and friendly/neutral, typical of standard minifigures. Facial hair, if present, should be a clean, solid printed graphic.",
+    "**Hair/Headwear - Molded 3D LEGO Piece:** Hair or headwear (e.g., a turban) must be rendered as a **distinct, solid, molded plastic LEGO accessory piece** that fits onto the head. It should have a clean, smooth, glossy surface and clear, defined edges, without any individual strand detail or organic textures.",
+    "**Clothing & Accessories - Printed 3D Graphics:** Clothing details (shirt patterns, pockets, details on legs) must be rendered as **crisp, flat, 2D graphics printed directly onto the flat, blocky surfaces of the torso and leg bricks**. There are no natural fabric folds, wrinkles, or textures. Any accessories (e.g., a chain) must be simplified, stylized **3D rendered LEGO elements** designed to physically attach to or hang on the minifigure, with the same plastic material properties.",
+    "**Material & Shading - Realistic LEGO Plastic:** The entire character must be rendered to look like **hard, injection-molded plastic with a subtle, realistic sheen**. Shading should be soft, realistic, and subtle, reflecting how light interacts with the glossy plastic surfaces of a real LEGO minifigure. This includes ambient occlusion in crevices and subtle highlights on edges. No hard cel-shading or cartoon flat colors.",
+    "**Color Palette - Vibrant LEGO Plastic Colors:** Use vibrant, solid colors that mimic the official LEGO color palette (e.g., bright yellow for skin, distinct green/black for plaid, dark grey for legs, brown for hair, red for turban). Colors should appear as if they are the inherent color of the plastic, not painted on. **Skin tone must be the classic, uniform LEGO yellow.**",
+    "**Line Work - Minimal & Realistic Edges:** Minimal to no explicit black outlines, beyond what defines the actual physical edges of the 3D rendered LEGO bricks. The forms are defined by the 3D geometry and lighting, not hard 2D lines.",
+    "**Background Context - Simple Studio Render:** The character should be presented against an **unbroken, single, uniform, solid light blue background**, consistent with a clean studio product render of a LEGO minifigure. No complex patterns, objects, or scenery. The background should subtly reflect the plastic character's light interaction.",
+    "**Overall Aesthetic - Official LEGO Product Render:** The final output must be indistinguishable from an official, high-quality 3D render of a LEGO minifigure, looking like it could be on LEGO's website or packaging. It should feel tangible, constructed, and precisely engineered.",
+    "**Resolution & Output:** Generate a high-resolution image (at least 1024x1024 pixels or larger) with crisp details and smooth 3D rendering quality."
+  ],
+  "negative_prompt": [
+    "2D illustration, cartoon, drawing, painting, sketch, hand-drawn, blurry, distorted, deformed, organic, realistic human features, soft shading (cel-shaded), complex gradients, textures (fabric, skin, hair strands), non-LEGO proportions, irregular shapes, non-LEGO colors, busy background, patterned background, text, watermark, signature, anime, manga, comic, cel shading, no 3d render"
+  ],
+  "style": "Official LEGO Minifigure 3D Render, photorealistic LEGO, toy photography, product rendering, clean 3D, plastic texture, vibrant colors, blocky, modular, iconic LEGO",
+  "output_format": "png",
+  "quality": "max"
+}`
+  },
 ];
 
 
